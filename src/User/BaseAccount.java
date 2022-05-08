@@ -19,7 +19,7 @@ public class BaseAccount {
     /*
      * user's current sold
      */
-    public Float sold;
+    public Double sold;
 
     /*
      * user can have multiple cards
@@ -34,7 +34,7 @@ public class BaseAccount {
     /*
      * main card associated with bank account
      */
-    public String mainCardNumber;
+    public Card mainCard;
 
     /*
      * boolean that checks if user has savings account
@@ -42,44 +42,60 @@ public class BaseAccount {
     public Boolean hasSavingsAccount;
 
     /*
+     * user's savings account
+     * can be null
+     */
+    public SavingsAccount savingsAccount;
+
+    /*
      * number of transfers completed by user
      */
     public Integer numberOfTransfers;
 
     /*
-     * id of each completed transfer
+     * each completed transfer
      */
-    public ArrayList<Integer> idTransfers;
+    public ArrayList<BankTransfer> transfers;
 
 
     public BaseAccount(Integer user_id, String iban) {
         this.user_id = user_id;
         this.iban = iban;
-        this.sold = 0.f;
+        this.sold = 0.00;
         this.numberOfCards = 1;
         this.cards = new ArrayList<>();
-        this.mainCardNumber = RandomStringUtils.random(24, false, true);
-        Card mainCard = new Card(this.mainCardNumber, this.user_id, this.iban, true);
-        this.cards.add(mainCard);
+        this.mainCard = new Card(RandomStringUtils.random(24, false, true), this.user_id, this.iban, true);
+        this.cards.add(this.mainCard);
         this.hasSavingsAccount = false;
-        this.numberOfTransfers = 0;
-        this.idTransfers = new ArrayList<>();
+        numberOfTransfers = 0;
+        this.transfers = new ArrayList<>();
     }
 
+    /*
+     * call this method from user only
+     */
+    void openSavingsAccount() {
+        this.hasSavingsAccount = true;
+        this.savingsAccount = new SavingsAccount(this.iban, this.user_id);
+    }
+
+    /*
+     * create a transfer
+     */
+    void createTransfer(Integer sender_user_id, Integer date, Double sum, Integer recipient_user_id) {
+        incrementNumberOfTransfers(getNumberOfTransfers());
+        this.transfers.add(new BankTransfer(sender_user_id, date, sum, this.iban, recipient_user_id));
+    }
 
     /*
      * getters used at sold interrogation
      */
-    public Float getSold() {
+    public Double getSold() {
         return sold;
     }
 
     public String getIban() {
         return iban;
-    }
-
-    public Integer getUser_id() {
-        return user_id;
     }
 
     public Integer getNumberOfCards() {
@@ -90,8 +106,8 @@ public class BaseAccount {
         return cards;
     }
 
-    public String getMainCardNumber() {
-        return mainCardNumber;
+    public Card getMainCard() {
+        return mainCard;
     }
 
     public Boolean getHasSavingsAccount() {
@@ -102,40 +118,35 @@ public class BaseAccount {
         return numberOfTransfers;
     }
 
-    public ArrayList<Integer> getIdTransfers() {
-        return idTransfers;
+    public ArrayList<BankTransfer> getTransfers() {
+        return transfers;
     }
-
 
     /*
      * setters used for user operations
      */
-    public void setSold(Float sold) {
+    public void setSold(Double sold) {
         this.sold = sold;
-    }
-
-    public void setNumberOfCards(Integer numberOfCards) {
-        this.numberOfCards = numberOfCards;
     }
 
     public void setCardNumbers(ArrayList<Card> cards) {
         this.cards = cards;
     }
 
-    public void setMainCardNumber(String mainCardNumber) {
-        this.mainCardNumber = mainCardNumber;
+    public void setMainCard(Card mainCard) {
+        this.mainCard = mainCard;
     }
 
     public void setHasSavingsAccount(Boolean hasSavingsAccount) {
         this.hasSavingsAccount = hasSavingsAccount;
     }
 
-    public void setNumberOfTransfers(Integer numberOfTransfers) {
-        this.numberOfTransfers = numberOfTransfers;
+    public void incrementNumberOfTransfers(Integer numberOfTransfers) {
+        this.numberOfTransfers = getNumberOfTransfers() + 1;
     }
 
-    public void setIdTransfers(ArrayList<Integer> idTransfers) {
-        this.idTransfers = idTransfers;
+    public void incrementNumberOfCards() {
+        this.numberOfCards = getNumberOfCards() + 1;
     }
 
     @Override
@@ -146,10 +157,11 @@ public class BaseAccount {
                 ", sold=" + sold +
                 ", numberOfCards=" + numberOfCards +
                 ", cards=" + cards +
-                ", mainCardNumber='" + mainCardNumber + '\'' +
+                ", mainCard=" + mainCard +
                 ", hasSavingsAccount=" + hasSavingsAccount +
+                ", savingsAccount=" + savingsAccount +
                 ", numberOfTransfers=" + numberOfTransfers +
-                ", idTransfers=" + idTransfers +
+                ", transfers=" + transfers +
                 '}';
     }
 }

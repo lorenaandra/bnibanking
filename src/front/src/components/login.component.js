@@ -7,16 +7,25 @@ export default class Login extends Component {
     password: ''
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log(this.state.value);
-    // console.log(this.stateP.value);
-    //console.log(e);
-    this.state.email = e.target[0].value;
-    this.state.password = e.target[1].value;
-    console.log(this.state.email);
-    console.log(this.state.password);
-  }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        // console.log(this.state.value);
+        // console.log(this.stateP.value);
+        //console.log(e);
+        this.state.email = e.target[0].value;
+        this.state.password = e.target[1].value;
+        console.log(this.state.email);
+        console.log(this.state.password);
+        console.log(JSON.stringify(this.state));
+        fetch('http://54.160.152.12:3000/sign-up', {
+            method: 'POST',
+            // We convert the React state to JSON and send it as the POST body
+            body: JSON.stringify(this.state)
+        }).then(function(response) {
+            console.log(response)
+            return response.json();
+        });
+    }
 
   render() {
     return (

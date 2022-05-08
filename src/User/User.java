@@ -76,6 +76,11 @@ public class User {
         return email;
     }
 
+    void openSavingsAccount() {
+        this.baseAccount.openSavingsAccount();
+        this.id_savings_account = SavingsAccount.savings_account_id;
+    }
+
     @Override
     public String toString() {
         return "User{" +
