@@ -79,6 +79,37 @@ html,
   margin: 0;
 }
 
+.info-savings-acc {
+  text-align: center;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #2600ff;
+  margin: 0;
+}
+
 .forgot-password a {
   color: #167bff;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #5975cc;
+}
+
+.flex-container > div {
+  background-color: #feabde;
+  border-radius: 15px;
+  margin: 5px;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.text-align {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }

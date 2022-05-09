@@ -2,61 +2,53 @@ import React, { Component } from 'react'
 
 export default class Cards extends Component {
 
-  state = {
-    email: '',
-    password: ''
+  style = {
+    color: 'black'
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log(this.state.value);
-    // console.log(this.stateP.value);
-    //console.log(e);
-    this.state.email = e.target[0].value;
-    this.state.password = e.target[1].value;
-    console.log(this.state.email);
-    console.log(this.state.password);
+  handleClick() {
+    alert("Setat card default");
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h3>Sign In</h3>
+      <form>
+        <h2>Cards</h2>
 
-        <div className="mb-3">
-          <label>Email address</label>
-          <input
-            type="email"
-            value={this.state.value}
-            className="form-control"
-            placeholder="Enter email"
-          />
+        <div className="flex-container">
+          <div style={this.style} onClick={this.handleClick}>
+            <div className='text-align'>Card 1</div>
+            <div>Popescu Alexandru</div>
+            <div className='text-right'>9876 4567 6543 1234</div>
+          </div>
+
+          <div onClick={this.handleClick}>
+            <div className='text-align'>Card 2</div>
+            <div>Popescu Alexandru</div>
+            <div className='text-right'>1234 6543 5678 9087</div>
+          </div>
+
+          <div onClick={this.handleClick}>
+            <div className='text-align'>Card 3</div>
+            <div>Popescu Alexandru</div>
+            <div className='text-right'>5442 2782 9829 3448</div>
+          </div>
+
+          <div onClick={this.handleClick}>
+            <div className='text-align'>Card 4</div>
+            <div>Popescu Alexandru</div>
+            <div className='text-right'>3487 8374 3348 7347</div>
+          </div>
+
+          <div onClick={this.handleClick}>
+            <div className='text-align'>Card 5</div>
+            <div>Popescu Alexandru</div>
+            <div className='text-right'>3484 0998 2398 2378</div>
+          </div>
         </div>
-
-        <div className="mb-3">
-          <label>Password</label>
-          <input
-            type="password"
-            value={this.state.value}
-            className="form-control"
-            placeholder="Enter password"
-          />
-        </div>
-
-        <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </div>
-
-        <p className="forgot-password text-right">
-          Do you want to <a href="/sign-up">sign up?</a>
-        </p>
-
       </form>
+
     )
   }
  
 }
-
-//export default Login;

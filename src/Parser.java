@@ -12,7 +12,7 @@ public class Parser {
 
     public static void main(String[] args) throws IOException {
 
-        URL url = new URL("http://54.160.152.12:3000/sign-up/");
+        URL url = new URL("http://54.160.152.12:8000/sign-in/");
         HttpURLConnection urlconn = (HttpURLConnection) url.openConnection();
         System.out.println(urlconn.getResponseCode());
       //  if ()

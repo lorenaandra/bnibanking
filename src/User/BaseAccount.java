@@ -82,9 +82,9 @@ public class BaseAccount {
     /*
      * create a transfer
      */
-    void createTransfer(Integer sender_user_id, Integer date, Double sum, Integer recipient_user_id) {
+    void createTransfer(Integer sender_user_id, Integer date, Double sum, Integer recipient_user_id, String transferDescription) {
         incrementNumberOfTransfers(getNumberOfTransfers());
-        this.transfers.add(new BankTransfer(sender_user_id, date, sum, this.iban, recipient_user_id));
+        this.transfers.add(new BankTransfer(sender_user_id, date, sum, this.iban, recipient_user_id, transferDescription));
     }
 
     /*

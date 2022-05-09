@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Login from './components/login.component'
 import SignUp from './components/signup.component'
 import Cards from './components/cards.component'
+import Transfer from './components/transfer.components'
+import SavingsAccount from './components/createSavingsAcc.components'
 
 function App() {
   return (
@@ -34,11 +36,21 @@ function App() {
                     Sign up
                   </Link>
                 </li>
-                {/* <li className="nav-item">
-                  <Link className="nav-link" to={'/sign-up'}>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/transfer'}>
+                    Create transfer
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/cards'}>
                     Cards
                   </Link>
-                </li> */}
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/sAccount'}>
+                    Create savings account
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -50,6 +62,9 @@ function App() {
               <Route exact path="/" element={<Login />} />
               <Route path="/sign-in" element={<Login />} />
               <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/transfer" element={<Transfer />} />
+              <Route path="/cards" element={<Cards />} />
+              <Route path="/sAccount" element={<SavingsAccount />} />
             </Routes>
           </div>
         </div>
