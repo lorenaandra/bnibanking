@@ -1,15 +1,36 @@
 import React, { Component } from 'react'
 
 export default class SignUp extends Component {
+  
+  state = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target[0].value); //fName
+    console.log(e.target[1].value); //lName
+    console.log(e.target[2].value); //email
+    console.log(e.target[3].value); //password
+    // this.state.email = e.target[0].value;
+    // this.state.password = e.target[1].value;
+    // console.log(this.state.email);
+    // console.log(this.state.password);
+  }
+  
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <h3>Sign Up</h3>
 
         <div className="mb-3">
           <label>First name</label>
           <input
             type="text"
+            value={this.state.value}
             className="form-control"
             placeholder="First name"
           />
@@ -17,13 +38,18 @@ export default class SignUp extends Component {
 
         <div className="mb-3">
           <label>Last name</label>
-          <input type="text" className="form-control" placeholder="Last name" />
+          <input
+          type="text"
+          value={this.state.value}
+          className="form-control"
+          placeholder="Last name" />
         </div>
 
         <div className="mb-3">
           <label>Email address</label>
           <input
             type="email"
+            value={this.state.value}
             className="form-control"
             placeholder="Enter email"
           />
@@ -33,6 +59,7 @@ export default class SignUp extends Component {
           <label>Password</label>
           <input
             type="password"
+            value={this.state.value}
             className="form-control"
             placeholder="Enter password"
           />
